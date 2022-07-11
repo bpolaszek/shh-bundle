@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/bentools/shh-bundle/v/stable)](https://packagist.org/packages/bentools/shh-bundle)
 [![License](https://poser.pugx.org/bentools/shh-bundle/license)](https://packagist.org/packages/bentools/shh-bundle)
-[![Build Status](https://img.shields.io/travis/bpolaszek/shh-bundle/master.svg?style=flat-square)](https://travis-ci.org/bpolaszek/shh-bundle)
+[![CI Workflow](https://github.com/bpolaszek/shh-bundle/actions/workflows/ci.yml/badge.svg)](https://github.com/bpolaszek/shh-bundle/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/bpolaszek/shh-bundle/badge.svg?branch=master)](https://coveralls.io/github/bpolaszek/shh-bundle?branch=master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/bpolaszek/shh-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/bpolaszek/shh-bundle)
 [![Total Downloads](https://poser.pugx.org/bentools/shh-bundle/downloads)](https://packagist.org/packages/bentools/shh-bundle)
