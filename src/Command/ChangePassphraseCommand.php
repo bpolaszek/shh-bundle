@@ -113,7 +113,10 @@ final class ChangePassphraseCommand extends Command
             $io->success(\sprintf('%s was successfully updated.', $dir . '/private.pem'));
         }
 
-        $io->caution('Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, and to deploy the new private key to everywhere it\'s needed!');
+        $io->caution(
+            'Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, 
+        and to deploy the new private key to everywhere it\'s needed!'
+        );
 
         return 0;
     }
