@@ -69,7 +69,7 @@ final class GenerateKeyPairCommand extends Command
         $passphrase = $input->getOption('passphrase');
         $dir = $this->keysDirectory;
 
-        if ($this->fs->exists($dir.'/private.pem') || $this->fs->exists($dir.'/public.pem')) {
+        if ($this->fs->exists($dir . '/private.pem') || $this->fs->exists($dir . '/public.pem')) {
             $io->error(\sprintf("Keys are already defined in %s.", $dir));
 
             return 1;
@@ -77,11 +77,11 @@ final class GenerateKeyPairCommand extends Command
 
         list($publicKey, $privateKey) = Shh::generateKeyPair($passphrase);
 
-        $this->fs->dumpFile($dir.'/private.pem', $privateKey);
-        $this->fs->dumpFile($dir.'/public.pem', $publicKey);
+        $this->fs->dumpFile($dir . '/private.pem', $privateKey);
+        $this->fs->dumpFile($dir . '/public.pem', $publicKey);
 
-        $io->success(\sprintf('%s was successfully created', $dir.'/private.pem'));
-        $io->success(\sprintf('%s was successfully created', $dir.'/public.pem'));
+        $io->success(\sprintf('%s was successfully created', $dir . '/private.pem'));
+        $io->success(\sprintf('%s was successfully created', $dir . '/public.pem'));
 
         if (null !== $passphrase) {
             $io->comment('Don\'t forget to report your passphrase into the SHH_PASSPHRASE environment variable.');

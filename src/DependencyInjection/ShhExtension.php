@@ -24,16 +24,16 @@ final class ShhExtension extends Extension
         $container->setParameter('shh.passphrase', $config['passphrase']);
         $container->setParameter('shh.keys_dir', $this->guessKeysDirectory($container));
 
-        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__).'/Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(\dirname(__DIR__) . '/Resources/config'));
         $loader->load('services.xml');
     }
 
     private function guessKeysDirectory(ContainerBuilder $container): string
     {
         if (Kernel::MAJOR_VERSION < 4) { // @phpstan-ignore-line
-            return $container->getParameter('kernel.project_dir').'/app/config/shh'; // @phpstan-ignore-line
+            return $container->getParameter('kernel.project_dir') . '/app/config/shh'; // @phpstan-ignore-line
         }
 
-        return $container->getParameter('kernel.project_dir').'/config/shh'; // @phpstan-ignore-line
+        return $container->getParameter('kernel.project_dir') . '/config/shh'; // @phpstan-ignore-line
     }
 }

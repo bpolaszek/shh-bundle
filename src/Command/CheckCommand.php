@@ -114,7 +114,7 @@ final class CheckCommand extends Command
         if ($success) {
             $io->success('Your configuration seems correct. 😎');
 
-            if (true=== $input->getOption('decrypt-only') && null === $input->getOption('payload')) {
+            if (true === $input->getOption('decrypt-only') && null === $input->getOption('payload')) {
                 $io->comment('Hint: to be sure payloads can be properly decoded, try this command with the <info>--payload</info> option.');
                 $io->comment('You can run the <info>shh:encrypt</info> on the server having the private key to get an encrypted payload to test.');
             }

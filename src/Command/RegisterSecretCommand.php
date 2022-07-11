@@ -88,9 +88,11 @@ final class RegisterSecretCommand extends Command
         }
 
         try {
-            if ($this->storage->has($key) && false === $io->confirm(
-                sprintf('Key "%s" already exists. Overwrite?', $key)
-            )) {
+            if (
+                $this->storage->has($key) && false === $io->confirm(
+                    sprintf('Key "%s" already exists. Overwrite?', $key)
+                )
+            ) {
                 $io->success('Your secrets file was left intact.');
 
                 return 0;
