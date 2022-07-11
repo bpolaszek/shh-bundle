@@ -13,9 +13,9 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        if (Kernel::MAJOR_VERSION < 4) {
-            $treeBuilder = new TreeBuilder();
-            $rootNode = $treeBuilder->root('shh');
+        if (Kernel::MAJOR_VERSION < 4) { // @phpstan-ignore-line
+            $treeBuilder = new TreeBuilder(); // @phpstan-ignore-line
+            $rootNode = $treeBuilder->root('shh'); // @phpstan-ignore-line
             $configDir = '%kernel.project_dir%/app/config/shh';
         } else {
             $treeBuilder = new TreeBuilder('shh');
@@ -23,6 +23,7 @@ final class Configuration implements ConfigurationInterface
             $configDir = '%kernel.project_dir%/config/shh';
         }
 
+        // @phpstan-ignore-next-line
         $rootNode
             ->children()
                 ->scalarNode('private_key_file')->defaultValue($configDir . '/private.pem')->end()

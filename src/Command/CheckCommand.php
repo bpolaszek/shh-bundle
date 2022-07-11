@@ -19,7 +19,7 @@ final class CheckCommand extends Command
     private $publicKeyFile;
 
     /**
-     * @var string
+     * @var ?string
      */
     private $privateKeyFile;
 
@@ -39,7 +39,7 @@ final class CheckCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Checks the app is ready for decrypting and / or encrypting payloads.')
@@ -63,7 +63,7 @@ final class CheckCommand extends Command
 
         // Private key is not required for encrypting.
         if (false === $input->getOption('encrypt-only')) {
-            if (!\is_readable($this->privateKeyFile)) {
+            if (!\is_readable((string) $this->privateKeyFile)) {
                 $errors[] = sprintf('The private key file is not readable: %s', $this->privateKeyFile);
                 $io->error(\end($errors));
             }
@@ -114,9 +114,15 @@ final class CheckCommand extends Command
         if ($success) {
             $io->success('Your configuration seems correct. 😎');
 
-            if (true=== $input->getOption('decrypt-only') && null === $input->getOption('payload')) {
-                $io->comment('Hint: to be sure payloads can be properly decoded, try this command with the <info>--payload</info> option.');
-                $io->comment('You can run the <info>shh:encrypt</info> on the server having the private key to get an encrypted payload to test.');
+            if (true === $input->getOption('decrypt-only') && null === $input->getOption('payload')) {
+                $io->comment(
+                    'Hint: to be sure payloads can be properly decoded, 
+try this command with the <info>--payload</info> option.'
+                );
+                $io->comment(
+                    'You can run the <info>shh:encrypt</info> on the server having the private key 
+to get an encrypted payload to test.'
+                );
             }
 
             return 0;

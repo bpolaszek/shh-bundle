@@ -25,7 +25,7 @@ final class RegisterSecretCommand extends Command
         $this->storage = $storage;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Register a new secret.')
             ->addArgument('key', InputArgument::REQUIRED, 'The secret\'s key name.')
@@ -37,7 +37,7 @@ final class RegisterSecretCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -88,9 +88,11 @@ final class RegisterSecretCommand extends Command
         }
 
         try {
-            if ($this->storage->has($key) && false === $io->confirm(
-                sprintf('Key "%s" already exists. Overwrite?', $key)
-            )) {
+            if (
+                $this->storage->has($key) && false === $io->confirm(
+                    sprintf('Key "%s" already exists. Overwrite?', $key)
+                )
+            ) {
                 $io->success('Your secrets file was left intact.');
 
                 return 0;

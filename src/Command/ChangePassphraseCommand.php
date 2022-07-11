@@ -17,11 +17,6 @@ final class ChangePassphraseCommand extends Command
     protected static $defaultName = 'shh:change:passphrase';
 
     /**
-     * @var Shh
-     */
-    private $shh;
-
-    /**
      * @var Filesystem
      */
     private $fs;
@@ -36,16 +31,15 @@ final class ChangePassphraseCommand extends Command
      */
     private $privateKey;
 
-    public function __construct(Shh $shh, Filesystem $fs, string $keysDir, ?string $privateKey)
+    public function __construct(Filesystem $fs, string $keysDir, ?string $privateKey)
     {
         parent::__construct();
-        $this->shh = $shh;
         $this->fs = $fs;
         $this->keysDir = $keysDir;
         $this->privateKey = $privateKey;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Change passphrase, generate a new private key.')
@@ -55,14 +49,14 @@ final class ChangePassphraseCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 
         if (null === $input->getOption('old-passphrase')) {
             $input->setOption('old-passphrase', $io->askHidden(
                 'Enter your old passphrase:',
-                function ($passphrase) use ($io) {
+                function ($passphrase) {
 
                     if (0 === \strlen($passphrase)) {
                         return null;
@@ -94,11 +88,6 @@ final class ChangePassphraseCommand extends Command
         $input->setOption('overwrite', $io->confirm('Overwrite current private key?'));
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int|void|null
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
@@ -124,7 +113,10 @@ final class ChangePassphraseCommand extends Command
             $io->success(\sprintf('%s was successfully updated.', $dir . '/private.pem'));
         }
 
-        $io->caution('Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, and to deploy the new private key to everywhere it\'s needed!');
+        $io->caution(
+            'Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, 
+        and to deploy the new private key to everywhere it\'s needed!'
+        );
 
         return 0;
     }
