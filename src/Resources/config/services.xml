@@ -46,7 +46,6 @@
         </service>
 
         <service id="BenTools\Shh\Command\ChangePassphraseCommand" class="BenTools\Shh\Command\ChangePassphraseCommand">
-            <argument type="service" id="BenTools\Shh\Shh"/>
             <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
             <argument type="string">%shh.keys_dir%</argument>
             <argument type="string">%shh.private_key_file%</argument>

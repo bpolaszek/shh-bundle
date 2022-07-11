@@ -31,7 +31,7 @@ class ChangePassphraseCommandTest extends TestCase
         $this->assertEquals('foo', $shh->decrypt($shh->encrypt('foo')));
 
         $application = new Application();
-        $application->add(new ChangePassphraseCommand($shh, new Filesystem(), $keysDir, $privateKeyFile));
+        $application->add(new ChangePassphraseCommand(new Filesystem(), $keysDir, $privateKeyFile));
         $command = $application->find('shh:change:passphrase');
         $commandTester = new CommandTester($command);
         $commandTester->setInputs([
