@@ -24,7 +24,7 @@ final class EncryptCommand extends Command
         $this->shh = $shh;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Encrypts a value.')
@@ -32,7 +32,7 @@ final class EncryptCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 

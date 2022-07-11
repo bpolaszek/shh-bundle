@@ -24,7 +24,7 @@ final class DecryptCommand extends Command
         $this->shh = $shh;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Decrypts a value.')
@@ -32,7 +32,7 @@ final class DecryptCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -51,11 +51,6 @@ final class DecryptCommand extends Command
         }
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     * @return int|void|null
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

@@ -31,7 +31,7 @@ final class GenerateKeyPairCommand extends Command
         $this->fs = $fs;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Generate public/private keys.')
@@ -39,7 +39,7 @@ final class GenerateKeyPairCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -62,11 +62,6 @@ final class GenerateKeyPairCommand extends Command
         }
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     * @return int|void|null
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

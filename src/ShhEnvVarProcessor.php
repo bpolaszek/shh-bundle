@@ -24,7 +24,7 @@ final class ShhEnvVarProcessor implements EnvVarProcessorInterface
     /**
      * @inheritDoc
      */
-    public function getEnv($prefix, $name, \Closure $getEnv)
+    public function getEnv($prefix, $name, \Closure $getEnv): mixed
     {
         $env = $getEnv($name);
 
@@ -34,7 +34,7 @@ final class ShhEnvVarProcessor implements EnvVarProcessorInterface
     /**
      * @inheritDoc
      */
-    public static function getProvidedTypes()
+    public static function getProvidedTypes(): array
     {
         return [
             'shh' => 'string',

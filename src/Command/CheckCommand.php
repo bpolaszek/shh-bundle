@@ -19,7 +19,7 @@ final class CheckCommand extends Command
     private $publicKeyFile;
 
     /**
-     * @var string
+     * @var ?string
      */
     private $privateKeyFile;
 
@@ -39,7 +39,7 @@ final class CheckCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Checks the app is ready for decrypting and / or encrypting payloads.')
@@ -63,7 +63,7 @@ final class CheckCommand extends Command
 
         // Private key is not required for encrypting.
         if (false === $input->getOption('encrypt-only')) {
-            if (!\is_readable($this->privateKeyFile)) {
+            if (!\is_readable((string) $this->privateKeyFile)) {
                 $errors[] = sprintf('The private key file is not readable: %s', $this->privateKeyFile);
                 $io->error(\end($errors));
             }

@@ -25,7 +25,7 @@ final class RegisterSecretCommand extends Command
         $this->storage = $storage;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Register a new secret.')
             ->addArgument('key', InputArgument::REQUIRED, 'The secret\'s key name.')
@@ -37,7 +37,7 @@ final class RegisterSecretCommand extends Command
         ;
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $io = new SymfonyStyle($input, $output);
 
