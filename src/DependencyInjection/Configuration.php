@@ -11,7 +11,7 @@ final class Configuration implements ConfigurationInterface
     /**
      * @inheritDoc
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         if (Kernel::MAJOR_VERSION < 4) { // @phpstan-ignore-line
             $treeBuilder = new TreeBuilder(); // @phpstan-ignore-line
