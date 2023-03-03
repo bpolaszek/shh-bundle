@@ -6,7 +6,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\HttpKernel\Kernel;
 
 final class ShhExtension extends Extension
 {
@@ -33,10 +32,6 @@ final class ShhExtension extends Extension
 
     private function guessKeysDirectory(ContainerBuilder $container): string
     {
-        if (Kernel::MAJOR_VERSION < 4) { // @phpstan-ignore-line
-            return $container->getParameter('kernel.project_dir') . '/app/config/shh'; // @phpstan-ignore-line
-        }
-
         return $container->getParameter('kernel.project_dir') . '/config/shh'; // @phpstan-ignore-line
     }
 }
