@@ -3,19 +3,19 @@
 namespace BenTools\Shh\Command;
 
 use BenTools\Shh\Shh;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpKernel\Kernel;
 
+#[AsCommand(
+    name: 'shh:change:passphrase',
+)]
 final class ChangePassphraseCommand extends Command
 {
-    protected static $defaultName = 'shh:change:passphrase';
-
     /**
      * @var Filesystem
      */

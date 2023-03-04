@@ -4,7 +4,6 @@ namespace BenTools\Shh\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\HttpKernel\Kernel;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -13,15 +12,9 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        if (Kernel::MAJOR_VERSION < 4) { // @phpstan-ignore-line
-            $treeBuilder = new TreeBuilder(); // @phpstan-ignore-line
-            $rootNode = $treeBuilder->root('shh'); // @phpstan-ignore-line
-            $configDir = '%kernel.project_dir%/app/config/shh';
-        } else {
-            $treeBuilder = new TreeBuilder('shh');
-            $rootNode = $treeBuilder->getRootNode();
-            $configDir = '%kernel.project_dir%/config/shh';
-        }
+        $treeBuilder = new TreeBuilder('shh');
+        $rootNode = $treeBuilder->getRootNode();
+        $configDir = '%kernel.project_dir%/config/shh';
 
         // @phpstan-ignore-next-line
         $rootNode
